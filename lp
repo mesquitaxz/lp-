@@ -49,3 +49,22 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);
 });
+javascript
+const express = require('express');
+const app = express();
+app.use(express.json());
+
+function calcularIMC(peso, altura) {
+    return Number((peso / (altura * altura)).toFixed(1));
+}
+
+app.post('/calcular-imc', (req, res) => {
+    const { peso, altura } = req.body;
+    const imc = calcularIMC(peso, altura);
+    res.json({ imc });
+});
+
+const PORT = 3000;
+app.listen(PORT, () => {
+    console.log(`Servidor rodando na porta ${PORT}`);
+});
